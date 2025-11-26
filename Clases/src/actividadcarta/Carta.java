@@ -1,37 +1,32 @@
 package actividadcarta;
 
 public class Carta {
-    int valor;
-    String palo;
-    
-    public Carta(){}
+    private int valor;
+    private String palo;
 
-    public Carta(String palo, int valor) {
-        this.palo = palo;
+    public Carta(int valor, String palo) {
         this.valor = valor;
+        this.palo = palo;
     }
 
     public int getValor() {
         return valor;
     }
 
-    public void setValor(int valor) {
-        this.valor = valor;
-    }
-
     public String getPalo() {
         return palo;
     }
 
-    public void setPalo(String palo) {
-        this.palo = palo;
-    }
-
     @Override
     public String toString() {
-        return "Carta [valor=" + valor + ", palo=" + palo + "]";
+        String nombreValor;
+        switch (valor) {
+            case 1: nombreValor = "As"; break;
+            case 11: nombreValor = "Sota"; break;
+            case 12: nombreValor = "Caballo"; break;
+            case 13: nombreValor = "Rey"; break;
+            default: nombreValor = String.valueOf(valor);
+        }
+        return nombreValor + " de " + palo;
     }
-
-
-    
 }
