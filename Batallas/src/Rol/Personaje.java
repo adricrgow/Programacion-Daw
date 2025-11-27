@@ -65,9 +65,10 @@ public class Personaje {
     }
 
     public void  recibirDaño(int daño){
-        vida <= daño;
-        if (vida <= 0);
-        System.out.println("Te Ha matado");
+        vida = vida - daño;
+        if (vida <= 0) {
+            System.out.println("Te Ha matado");
+        }
     }
 
     public boolean EstaVivo(){

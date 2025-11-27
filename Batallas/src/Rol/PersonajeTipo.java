@@ -1,5 +1,5 @@
 package Rol;
 
 public enum  PersonajeTipo {
-    Cabellero,Marco,Orco;
+    Cabellero,Mago,Orco;
 }
