@@ -7,7 +7,9 @@ import java.util.Scanner;
 public class Batalla {
     ArrayList<Personaje> heroe = new ArrayList<>();
     ArrayList<Personaje> orco = new ArrayList<>();
+    Random aleatorio;
     
+    public Batalla(){}
 
     public void mostrarMenu(){
         Scanner teclado = new Scanner(System.in);
@@ -46,13 +48,22 @@ public class Batalla {
 
     }
     public void AñadirPersonaje(Personaje persona, PersonajeTipo tipo){
+        Scanner teclado = new Scanner(System.in);
         if(tipo.equals(PersonajeTipo.Orco)){
             orco.add(persona);
         }else{
             heroe.add(persona);
         }
-
         
+        System.out.println("Intoduce el nombre del personaje");
+        String nombre = teclado.nextLine();
+        System.out.println("Introduce su vida");
+        int vida = teclado.nextInt();
+        System.out.println("Introduce el ataque");
+        int ataque = teclado.nextInt();
+        System.out.println("Introduce la Defensa");
+        int defensa = teclado.nextInt();
+        Personaje persona = new Personaje(ataque, defensa, nombre, tipo, vida);
         
     }
 
@@ -61,9 +72,15 @@ public class Batalla {
             System.out.println("No hay nadie para darse para el pelo");
             
         }
-        
+
         System.out.println("Hacerse Polvo");
 
+        Personaje heroe = heroe.get(aleatorio);
+        Personaje orco = orco.get(aleatorio);
 
+        System.out.println("La batllas es entre" + heroe.nombre + "contra" + orco.nombre);
+        heroe.atacar(orco);
+        orco.atacar(heroe);
+        
     }
 }
