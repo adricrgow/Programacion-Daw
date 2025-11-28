@@ -61,7 +61,7 @@ public class Personaje {
     public void atacar(Personaje enemigo){
         int daño = this.ataque - enemigo.defensa;
         enemigo.recibirDaño(daño);
-        System.out.println(this.nombre + "ataca a" + enemigo.nombre + " le hace daño" + daño + "puntos de daño" );
+        System.out.println(this.nombre + " ataca a " + enemigo.nombre + " le hace daño " + daño + " puntos de daño" );
     }
 
     public void  recibirDaño(int daño){
