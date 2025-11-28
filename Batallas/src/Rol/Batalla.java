@@ -8,7 +8,7 @@ public class Batalla {
     ArrayList<Personaje> heroe = new ArrayList<>();
     ArrayList<Personaje> orco = new ArrayList<>();
     Random aleatorio;
-    boolean juegoTerminado = false; // bandera para cerrar menú
+    boolean juegoTerminado = false;
     
     public Batalla(){}
 
@@ -36,7 +36,7 @@ public class Batalla {
                         break;
                     case 3:
                         persona = new Personaje();
-                        AñadirPersonaje(persona, PersonajeTipo.Cabellero); // corregido
+                        AñadirPersonaje(persona, PersonajeTipo.Cabellero); 
                         break;
                     case 4:
                         EmpezarBatalla();
