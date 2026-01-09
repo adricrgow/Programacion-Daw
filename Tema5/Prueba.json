@@ -1,0 +1,11 @@
+{
+    "firstName": "Adrian",
+    "lastName": "Contreras ramirez",
+    "age": 18,
+    "phoneNumbers": [
+    {
+    "type": "home",
+    "phone-number": "666123456"
+    }
+    ]
+}

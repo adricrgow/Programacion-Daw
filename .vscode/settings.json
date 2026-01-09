@@ -1,4 +1,8 @@
 {
     "commentTranslate.targetLanguage": "es",
-    "java.debug.settings.onBuildFailureProceed": true
+    "java.debug.settings.onBuildFailureProceed": true,
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "Tema5/json-simple-1.1.1.jar"
+    ]
 }
