@@ -1,8 +1,15 @@
-public class Oficial {
+public class Oficial extends Operario{
+
+    public Oficial() {
+    }
+
+    public Oficial(String nombre) {
+        super(nombre);
+        System.out.println("Constructor de Oficial");
+    }
 
     @Override
     public String toString() {
-        return "Oficial []";
+        return super.toString() + " -> Oficial";
     }
-    
 }

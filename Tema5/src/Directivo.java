@@ -1,11 +1,15 @@
-public class Directivo {
+public class Directivo extends Empleado{
 
+    public Directivo() {
+    }
+   
+    public Directivo(String nombre) {
+        super(nombre);
+        System.out.println("Constructor de Directivo");
+    }
+   
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Directivo{");
-        sb.append('}');
-        return sb.toString();
+        return super.toString() + " -> Directivo";
     }
-    
 }

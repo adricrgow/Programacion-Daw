@@ -1,11 +1,14 @@
-public class Operario {
+public class Operario extends Empleado{
 
+    
+    public Operario(String nombre) {
+        super(nombre);
+        System.out.println("Constructor de Operario");
+    }
+    public Operario() {
+    }
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Operario{");
-        sb.append('}');
-        return sb.toString();
+        return super.toString() + " -> Operario";
     }
-    
 }
