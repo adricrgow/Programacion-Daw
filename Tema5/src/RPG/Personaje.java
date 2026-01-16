@@ -47,8 +47,8 @@ public abstract class Personaje {
         this.defensa = defensa;
     }
 
-    public static boolean EstaVivo(int vida) {
-        return vida > 0;
+    public  boolean estaVivo() {
+        return this.vida > 0;
     }
 
     public void  recibirDaño(int daño){
@@ -58,6 +58,6 @@ public abstract class Personaje {
         }
     }
 
-    public abstract void atacar();
+    public abstract int atacar();
 
 }
