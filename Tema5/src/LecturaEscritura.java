@@ -16,6 +16,7 @@ public class LecturaEscritura {
         this.partidasJugador2+=cantidad;
     }
     public static void main (String[] args){
+        //Actividad diapositiva 17
         LecturaEscritura objeto = new LecturaEscritura();
         //Lectura de datos
         objeto.leerDatos("./Tema5/numeros.txt");
@@ -26,8 +27,34 @@ public class LecturaEscritura {
         //Guardar los datos
         objeto.guardarDatos("./Tema5/numeros.txt");
 
+        // Actividad 2 bonoloto
+        
+        int[] bonoloto = {5, 12, 23, 34, 38, 45};
+
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter("bonoloto.txt"));
+            bw.write("Bonoloto: ");
+
+            for (int i = 0; i < bonoloto.length; i++) {
+                bw.write(String.valueOf(bonoloto[i]));
+                if (i < bonoloto.length - 1) {
+                    bw.write(",");
+                }
+            }
+
+            bw.newLine();
+            bw.close();
+
+            System.out.println("Bonoloto guardada.");
+        } catch (IOException e) {
+            System.out.println("Error al escribir la Bonoloto.");
+        }
+
     }
     //Función para leer de fichero
+    
+
+    
     public void leerDatos(String ruta) {
         File fichero = new File(ruta);
         if (!fichero.exists()) return; // Si no existe, empezamos en 0
