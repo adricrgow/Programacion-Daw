@@ -3,6 +3,7 @@
     "java.debug.settings.onBuildFailureProceed": true,
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "Tema5/json-simple-1.1.1.jar"
+        "Tema5/json-simple-1.1.1.jar",
+        "Tema6/mysql-connector-j-9.5.0.jar"
     ]
 }
