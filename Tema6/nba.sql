@@ -484,7 +484,7 @@ INSERT INTO jugadores VALUES (611,'Mickael Pietrus',NULL,'6-6',215,'F','Warriors
 INSERT INTO jugadores VALUES (612,'C.J. Watson',NULL,'6-2',180,'G','Warriors');
 INSERT INTO jugadores VALUES (613,'Brandan Wright',NULL,'6-9',205,'F','Warriors');
 INSERT INTO jugadores VALUES (666,'Domingo Lopez Oller','Spaim','7-0',250,'C','Lakers');
-
+INSERT INTO jugadores VALUES (667,'Adrian Contreras Ramirez','Spain','6-8',210,'C','Lakers');
 CREATE TABLE estadisticas (
   temporada varchar(5) NOT NULL ,
   jugador int NOT NULL ,
