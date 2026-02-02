@@ -1,0 +1,6 @@
+¿Cuándo puede interesarnos crear una clase abstracta? ¿Y una clase interfaz?
+
+Una clase abstracta nos interesa crearla cuando queremos definir una clase base que no se pueda instanciar por sí misma, 
+pero que proporcione una estructura común y funcionalidad compartida para sus subclases. 
+
+Y una clase interfaz te interesa cuando necesitas definir un comportamiento que una clase puede implementar, permitiendo múltiples implementaciones.
