@@ -6,16 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ProvedorDAO {
+public class HaceDAO {
     // CREATE
-    public static void insertar(int codigo, String direccion, String ciudad, String provincia) {
-    String sql = "INSERT INTO proveedor VALUES (?, ?, ?, ?)";
+    public static void insertar(int id_alumno, int id_examen, double nota) {
+    String sql = "INSERT INTO hace VALUES (?, ?, ?)";
     try (Connection conn = Conexion.getConnection();
     PreparedStatement ps = conn.prepareStatement(sql)) {
-        ps.setInt(1, codigo);
-        ps.setString(2, direccion);
-        ps.setString(3, ciudad);
-        ps.setString(4, provincia);
+        ps.setInt(1, id_alumno);
+        ps.setInt(2, id_examen);
+        ps.setDouble(3, nota);
         ps.executeUpdate();
     } catch (SQLException e) {
         System.err.println(e.getMessage());
@@ -23,13 +22,13 @@ public class ProvedorDAO {
     }
     // READ (SELECT)
     public static void listar() {
-    String sql = "SELECT * FROM proveedor";
+    String sql = "SELECT * FROM hace";
     try (Connection conn = Conexion.getConnection();
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(sql)) {
         while (rs.next()) {
         System.out.println(
-        rs.getInt("codigo") + " - " + rs.getString("ciudad")
+        rs.getInt("id_alumno") + " - " + rs.getInt("id_examen")
         );
     }
     } catch (SQLException e) {
@@ -37,23 +36,25 @@ public class ProvedorDAO {
     }
     }
     // UPDATE
-    public static void actualizar(int codigo, String nuevaCiudad) {
-    String sql = "UPDATE proveedor SET ciudad=? WHERE codigo=?";
+    public static void actualizar(int id_alumno, int id_examen, double nuevaNota) {
+    String sql = "UPDATE hace SET nota=? WHERE id_alumno=? AND id_examen=?";
     try (Connection conn = Conexion.getConnection();
     PreparedStatement ps = conn.prepareStatement(sql)) {
-    ps.setString(1, nuevaCiudad);
-    ps.setInt(2, codigo);
+    ps.setDouble(1, nuevaNota);
+    ps.setInt(2, id_alumno);
+    ps.setInt(3, id_examen);
     ps.executeUpdate();
     } catch (SQLException e) {
     System.err.println(e.getMessage());
     }
     }
     // DELETE
-    public static void borrar(int codigo) {
-    String sql = "DELETE FROM proveedor WHERE codigo=?";
+    public static void borrar(int id_alumno, int id_examen) {
+    String sql = "DELETE FROM hace WHERE id_alumno=? AND id_examen=?";
     try (Connection conn = Conexion.getConnection();
     PreparedStatement ps = conn.prepareStatement(sql)) {
-    ps.setInt(1, codigo);
+    ps.setInt(1, id_alumno);
+    ps.setInt(2, id_examen);
     ps.executeUpdate();
     } catch (SQLException e) {
     System.err.println(e.getMessage());
