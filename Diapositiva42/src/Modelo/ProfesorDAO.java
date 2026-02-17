@@ -5,45 +5,55 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class ProfesorDAO {
     // CREATE
-    public static void insertar(int id, String nif, String nombre, String apellido1, String apellido2) {
+    public static void insertar(Profesor2 p) {
     String sql = "INSERT INTO profesor VALUES (?, ?, ?, ?, ?)";
     try (Connection conn = Conexion.getConnection();
     PreparedStatement ps = conn.prepareStatement(sql)) {
-        ps.setInt(1, id);
-        ps.setString(2, nif);
-        ps.setString(3, nombre);
-        ps.setString(4, apellido1);
-        ps.setString(5, apellido2);
+        ps.setInt(1, p.getId());
+        ps.setString(2, p.getNif());
+        ps.setString(3, p.getNombre());
+        ps.setString(4, p.getApellido1());
+        ps.setString(5, p.getApellido2());
         ps.executeUpdate();
     } catch (SQLException e) {
         System.err.println(e.getMessage());
     }
     }
     // READ (SELECT)
-    public static void listar() {
+    public static ArrayList<Profesor2> listar() {
+    ArrayList<Profesor2> profesores = new ArrayList<>();
     String sql = "SELECT * FROM profesor";
     try (Connection conn = Conexion.getConnection();
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(sql)) {
         while (rs.next()) {
-        System.out.println(
-        rs.getInt("id") + " - " + rs.getString("nombre")
+        Profesor2 profesor = new Profesor2(
+            rs.getInt("id"),
+            rs.getString("nif"),
+            rs.getString("nombre"),
+            rs.getString("apellido1"),
+            rs.getString("apellido2")
         );
-    }
+        profesores.add(profesor);
+        }
     } catch (SQLException e) {
         System.err.println(e.getMessage());
     }
+    return profesores;
     }
     // UPDATE
-    public static void actualizar(int id, String nuevoNombre) {
-    String sql = "UPDATE profesor SET nombre=? WHERE id=?";
+    public static void actualizar(Profesor2 p) {
+    String sql = "UPDATE profesor SET nombre=?, apellido1=?, apellido2=? WHERE id=?";
     try (Connection conn = Conexion.getConnection();
     PreparedStatement ps = conn.prepareStatement(sql)) {
-    ps.setString(1, nuevoNombre);
-    ps.setInt(2, id);
+    ps.setString(1, p.getNombre());
+    ps.setString(2, p.getApellido1());
+    ps.setString(3, p.getApellido2());
+    ps.setInt(4, p.getId());
     ps.executeUpdate();
     } catch (SQLException e) {
     System.err.println(e.getMessage());

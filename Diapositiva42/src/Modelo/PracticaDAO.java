@@ -5,43 +5,50 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class PracticaDAO {
 	// CREATE
-	public static void insertar(int id, String titulo, String dificultad) {
+	public static void insertar(Practica p) {
 	String sql = "INSERT INTO practica VALUES (?, ?, ?)";
 	try (Connection conn = Conexion.getConnection();
 	PreparedStatement ps = conn.prepareStatement(sql)) {
-		ps.setInt(1, id);
-		ps.setString(2, titulo);
-		ps.setString(3, dificultad);
+		ps.setInt(1, p.getId());
+		ps.setString(2, p.getTitulo());
+		ps.setString(3, p.getDificultad());
 		ps.executeUpdate();
 	} catch (SQLException e) {
 		System.err.println(e.getMessage());
 	}
 	}
 	// READ (SELECT)
-	public static void listar() {
+	public static ArrayList<Practica> listar() {
+	ArrayList<Practica> practicas = new ArrayList<>();
 	String sql = "SELECT * FROM practica";
 	try (Connection conn = Conexion.getConnection();
 		Statement stmt = conn.createStatement();
 		ResultSet rs = stmt.executeQuery(sql)) {
 		while (rs.next()) {
-		System.out.println(
-		rs.getInt("id") + " - " + rs.getString("titulo")
+		Practica practica = new Practica(
+			rs.getInt("id"),
+			rs.getString("titulo"),
+			rs.getString("dificultad")
 		);
-	}
+		practicas.add(practica);
+		}
 	} catch (SQLException e) {
 		System.err.println(e.getMessage());
 	}
+	return practicas;
 	}
 	// UPDATE
-	public static void actualizar(int id, String nuevoTitulo) {
-	String sql = "UPDATE practica SET titulo=? WHERE id=?";
+	public static void actualizar(Practica p) {
+	String sql = "UPDATE practica SET titulo=?, dificultad=? WHERE id=?";
 	try (Connection conn = Conexion.getConnection();
 	PreparedStatement ps = conn.prepareStatement(sql)) {
-	ps.setString(1, nuevoTitulo);
-	ps.setInt(2, id);
+	ps.setString(1, p.getTitulo());
+	ps.setString(2, p.getDificultad());
+	ps.setInt(3, p.getId());
 	ps.executeUpdate();
 	} catch (SQLException e) {
 	System.err.println(e.getMessage());

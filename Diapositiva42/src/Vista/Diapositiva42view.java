@@ -7,7 +7,6 @@ import Modelo.ExamenTeorico;
 import Modelo.Hace;
 import Modelo.Practica;
 import Modelo.Profesor2;
-
 import java.util.List;
 import java.util.Scanner;
 
@@ -30,6 +29,20 @@ public class Diapositiva42view {
         System.out.println("12. Insertar Diseña Examen");
         System.out.println("13. Insertar Diseña Práctica");
         System.out.println("14. Insertar Hace");
+        System.out.println("15. Eliminar Alumno");
+        System.out.println("16. Eliminar Profesor");
+        System.out.println("17. Eliminar Examen Teórico");
+        System.out.println("18. Eliminar Práctica");
+        System.out.println("19. Eliminar Diseña Examen");
+        System.out.println("20. Eliminar Diseña Práctica");
+        System.out.println("21. Eliminar Hace");
+        System.out.println("22. Actualizar Alumno");
+        System.out.println("23. Actualizar Profesor");
+        System.out.println("24. Actualizar Examen Teórico");
+        System.out.println("25. Actualizar Práctica");
+        System.out.println("26. Actualizar Diseña Examen");
+        System.out.println("27. Actualizar Diseña Práctica");
+        System.out.println("28. Actualizar Hace");
         System.out.println("0. Salir");
         System.out.print("Opción: ");
         return sc.nextInt();
@@ -211,13 +224,135 @@ public class Diapositiva42view {
         return new Hace(idAlumno, idExamen, nota);
     }
 
+    public Alumno actualizar(){
+        sc.nextLine();
+        System.out.print("ID del alumno a actualizar: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+        System.out.print("Nuevo Nombre: ");
+        String nombre = sc.nextLine();
+        System.out.print("Nuevo Primer Apellido: ");
+        String apellido1 = sc.nextLine();
+        System.out.print("Nuevo Segundo Apellido: ");
+        String apellido2 = sc.nextLine();
+        return new Alumno(id, null, null, nombre, apellido1, apellido2);
+    }
+
+    public Profesor2 actualizarProfesor(){
+        sc.nextLine();
+        System.out.print("ID del profesor a actualizar: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+        System.out.print("Nuevo Nombre: ");
+        String nombre = sc.nextLine();
+        System.out.print("Nuevo Primer Apellido: ");
+        String apellido1 = sc.nextLine();
+        System.out.print("Nuevo Segundo Apellido: ");
+        String apellido2 = sc.nextLine();
+        return new Profesor2(id, null, nombre, apellido1, apellido2);
+    }
+
+    public ExamenTeorico actualizarExamen(){
+        sc.nextLine();
+        System.out.print("ID del examen a actualizar: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+        System.out.print("Nuevo Título: ");
+        String titulo = sc.nextLine();
+        System.out.print("Nuevo Número de Preguntas: ");
+        int numeroPreguntas = sc.nextInt();
+        sc.nextLine();
+        System.out.print("Nueva Fecha (YYYY-MM-DD): ");
+        String fecha = sc.nextLine();
+        return new ExamenTeorico(id, titulo, numeroPreguntas, fecha);
+    }
+
+    public Practica actualizarPractica(){
+        sc.nextLine();
+        System.out.print("ID de la práctica a actualizar: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+        System.out.print("Nuevo Título: ");
+        String titulo = sc.nextLine();
+        System.out.print("Nueva Dificultad: ");
+        String dificultad = sc.nextLine();
+        return new Practica(id, titulo, dificultad);
+    }
+
+    public DiseñaExamen actualizarDiseñaExamen(){
+        sc.nextLine();
+        System.out.print("ID del examen a actualizar: ");
+        int idExamen = sc.nextInt();
+        System.out.print("ID del profesor a actualizar: ");
+        int idProfesor = sc.nextInt();
+        sc.nextLine();
+        System.out.print("Nueva Fecha (YYYY-MM-DD): ");
+        String fecha = sc.nextLine();
+        return new DiseñaExamen(idExamen, idProfesor, fecha);
+    }
+    public DiseñaPractica actualizarDiseñaPractica(){
+        sc.nextLine();
+        System.out.print("ID de la práctica a actualizar: ");
+        int idPractica = sc.nextInt();
+        System.out.print("ID del profesor a actualizar: ");
+        int idProfesor = sc.nextInt();
+        sc.nextLine();
+        System.out.print("Nueva Fecha (YYYY-MM-DD): ");
+        String fecha = sc.nextLine();
+        return new DiseñaPractica(idPractica, idProfesor, fecha);
+    }
+    public Hace actualizarHace(){
+        sc.nextLine();
+        System.out.print("ID del alumno a actualizar: ");
+        int idAlumno = sc.nextInt();
+        System.out.print("ID del examen a actualizar: ");
+        int idExamen = sc.nextInt();
+        System.out.print("Nueva Nota: ");
+        double nota = sc.nextDouble();
+        return new Hace(idAlumno, idExamen, nota);
+    }
     // --- MÉTODOS DE UTILIDAD ---
     public int pedirId() {
         System.out.print("ID: ");
         return sc.nextInt();
     }
 
+    public int pedirIdAlumno() {
+        System.out.print("ID Alumno: ");
+        return sc.nextInt();
+    }
+
+    public int pedirIdProfesor() {
+        System.out.print("ID Profesor: ");
+        return sc.nextInt();
+    }
+
+    public int pedirIdExamen() {
+        System.out.print("ID Examen: ");
+        return sc.nextInt();
+    }
+
+    public int pedirIdPractica() {
+        System.out.print("ID Práctica: ");
+        return sc.nextInt();
+    }
+
     public void mostrarMensaje(String msg) {
         System.out.println(msg);
     }
+
+    public String pedirNuevoNombre() {
+        sc.nextLine();
+        System.out.print("Nuevo Nombre: ");
+        return sc.nextLine();
+    }
+    public String pedirNuevoApellido1() {
+        System.out.print("Nuevo Primer Apellido: ");
+        return sc.nextLine();
+    }
+    public String pedirNuevoApellido2() {
+        System.out.print("Nuevo Segundo Apellido: ");
+        return sc.nextLine();
+    }
+
 }
