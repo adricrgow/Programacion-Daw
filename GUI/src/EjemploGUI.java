@@ -5,10 +5,10 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JWindow;
+import javax.swing.JFrame;
 
 // 1) Creamos la clase ventana
-public class EjemploGUI extends JWindow implements ActionListener {
+public class EjemploGUI extends JFrame implements ActionListener {
 
     private JPanel panelDeContenido;
     private JLabel etiqueta1;
@@ -21,6 +21,7 @@ public class EjemploGUI extends JWindow implements ActionListener {
     private JTextField campoDeTexto2;
     private JLabel etiqueta3;
     private JTextField campoDeTexto3;
+    private JLabel etiquetaResultado;
 
     public EjemploGUI(String title) {
         initComponents(title);
@@ -28,10 +29,10 @@ public class EjemploGUI extends JWindow implements ActionListener {
 
     private void initComponents(String title) {
         // Configuramos los parámetros de la ventana
-        // setTitle(title);
+        setTitle(title);
         setLocation(200, 500); //setLocationRelativeTo(null);
         setSize(300, 200);
-        // setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         // 2) Crear los componentes
         etiqueta1 = new JLabel("Número de clicks:");
         campoDeTexto = new JTextField("0", 10);
@@ -44,8 +45,25 @@ public class EjemploGUI extends JWindow implements ActionListener {
         campoDeTexto3 = new JTextField(10);
         sumar = new JButton("Sumar");
         restar = new JButton("Restar");
-        sumar.addActionListener(this);
-        restar.addActionListener(this);
+        sumar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int num1 = Integer.parseInt(campoDeTexto2.getText());
+                int num2 = Integer.parseInt(campoDeTexto3.getText());
+                int resultado = num1 + num2;
+                etiquetaResultado.setText("Resultado: " + resultado);
+            }
+        });
+        restar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int num1 = Integer.parseInt(campoDeTexto2.getText());
+                int num2 = Integer.parseInt(campoDeTexto3.getText());
+                int resultado = num1 - num2;
+                etiquetaResultado.setText("Resultado: " + resultado);
+            }
+        });
+        etiquetaResultado = new JLabel("Resultado:");
         
         // 3) Crear un contenedor
         panelDeContenido = new JPanel();
@@ -56,6 +74,7 @@ public class EjemploGUI extends JWindow implements ActionListener {
         panelDeContenido.add(campoDeTexto2);
         panelDeContenido.add(etiqueta3);
         panelDeContenido.add(campoDeTexto3);
+        panelDeContenido.add(etiquetaResultado);
         panelDeContenido.add(sumar);
         panelDeContenido.add(restar);
         panelDeContenido.add(boton);
@@ -70,6 +89,18 @@ public class EjemploGUI extends JWindow implements ActionListener {
     public void actionPerformed(ActionEvent event) {
         numClicks++;
         campoDeTexto.setText(String.valueOf(numClicks));
+        // Object origen = event.getSource();
+        // if (origen == sumar) {
+        //    int num1 = Integer.parseInt(campoDeTexto2.getText());
+        //         int num2 = Integer.parseInt(campoDeTexto3.getText());
+        //         int resultado = num1 + num2;
+        //         etiquetaResultado.setText("Resultado: " + resultado);
+        // } else if (origen == restar) {
+        //     int num1 = Integer.parseInt(campoDeTexto2.getText());
+        //         int num2 = Integer.parseInt(campoDeTexto3.getText());
+        //         int resultado = num1 - num2;
+        //         etiquetaResultado.setText("Resultado: " + resultado);
+        // }
     }
 
     public static void main(String[] args) {
