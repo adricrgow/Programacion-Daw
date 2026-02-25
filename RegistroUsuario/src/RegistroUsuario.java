@@ -16,6 +16,8 @@ public class RegistroUsuario extends javax.swing.JFrame {
      */
     public RegistroUsuario() {
         initComponents();
+        populateDateCombos();
+        resetForm();
     }
 
     /**
@@ -66,6 +68,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jButton2.setText("Reiniciar");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("Masculino");
@@ -259,15 +262,105 @@ public class RegistroUsuario extends javax.swing.JFrame {
     }                                           
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
+        // try updating image when URL field triggers (Enter key)
+        updateImageLabel();
     }                                           
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
+        // no additional action needed here
     }                                          
 
+    // Poner la fecha en los combos al iniciar, con días 1-31, meses 1-12 y años 1900 hasta el actual
+    private void populateDateCombos() {
+        for (int d = 1; d <= 31; d++) {
+            jComboBox1.addItem(String.valueOf(d));
+        }
+        for (int m = 1; m <= 12; m++) {
+            jComboBox2.addItem(String.valueOf(m));
+        }
+        int currentYear = java.time.Year.now().getValue();
+        for (int y = 1900; y <= currentYear; y++) {
+            jComboBox5.addItem(String.valueOf(y));
+        }
+        jComboBox1.setSelectedIndex(-1);
+        jComboBox2.setSelectedIndex(-1);
+        jComboBox5.setSelectedIndex(-1);
+    }
+
+    // Limpiar todos los campos y resetear el formulario a estado inicial
+    private void resetForm() {
+        jTextField1.setText("");
+        jTextField2.setText("");
+        buttonGroup1.clearSelection();
+        jComboBox1.setSelectedIndex(-1);
+        jComboBox2.setSelectedIndex(-1);
+        jComboBox5.setSelectedIndex(-1);
+        jTextArea2.setText("");
+        jTextField3.setText("");
+        jCheckBox1.setSelected(false);
+        jTextArea1.setText("");
+        jLabel2.setText("");
+        jLabel3.setIcon(null);
+        jLabel3.setText("");
+    }
+
+    // actualizar la imagen en el label a partir de la URL ingresada, mostrando error si no es válida
+    private void updateImageLabel() {
+        String url = jTextField3.getText().trim();
+        if (url.isEmpty()) {
+            jLabel3.setIcon(null);
+            jLabel3.setText("");
+            return;
+        }
+        try {
+            java.net.URL imageUrl = new java.net.URL(url);
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(imageUrl);
+            jLabel3.setIcon(icon);
+            jLabel3.setText("");
+        } catch (Exception ex) {
+            jLabel3.setIcon(null);
+            jLabel3.setText("URL inválida");
+        }
+    }
+
+    // Recoger los datos del formulario, validar y mostrar en el textarea, además de actualizar el estado del registro
+    private void processSend() {
+        jTextArea1.setText("");
+        if (!jCheckBox1.isSelected()) {
+            jLabel2.setText("Fallo: no ha aceptado términos.");
+            return;
+        }
+        String nombre = jTextField1.getText().trim();
+        String telefono = jTextField2.getText().trim();
+        String genero = jRadioButton1.isSelected() ? "Masculino"
+                : jRadioButton2.isSelected() ? "Femenino" : "";
+        String dia = jComboBox1.getSelectedItem() != null ? jComboBox1.getSelectedItem().toString() : "";
+        String mes = jComboBox2.getSelectedItem() != null ? jComboBox2.getSelectedItem().toString() : "";
+        String anyo = jComboBox5.getSelectedItem() != null ? jComboBox5.getSelectedItem().toString() : "";
+        String fecha = dia + "/" + mes + "/" + anyo;
+        String direccion = jTextArea2.getText();
+        String url = jTextField3.getText().trim();
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("Nombre: ").append(nombre).append("\n");
+        sb.append("Teléfono: ").append(telefono).append("\n");
+        sb.append("Género: ").append(genero).append("\n");
+        sb.append("Fecha Nac: ").append(fecha).append("\n");
+        sb.append("Dirección: ").append(direccion).append("\n");
+        sb.append("Imagen URL: ").append(url).append("\n");
+        jTextArea1.setText(sb.toString());
+        jLabel2.setText("Usuario puesto correctamente");
+        updateImageLabel();
+    }
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+        // collect input and show in textarea on second panel
+        processSend();
+    }                                        
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // reset everything
+        resetForm();
     }                                        
 
     /**
