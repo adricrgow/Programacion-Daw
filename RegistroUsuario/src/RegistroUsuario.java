@@ -324,7 +324,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
     }
 
     // Recoger los datos del formulario, validar y mostrar en el textarea, además de actualizar el estado del registro
-    private void processSend() {
+    private void Recoger() {
         jTextArea1.setText("");
         if (!jCheckBox1.isSelected()) {
             jLabel2.setText("Fallo: no ha aceptado términos.");
@@ -354,12 +354,12 @@ public class RegistroUsuario extends javax.swing.JFrame {
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // collect input and show in textarea on second panel
-        processSend();
+      
+        Recoger();
     }                                        
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // reset everything
+       
         resetForm();
     }                                        
 
