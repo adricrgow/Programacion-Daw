@@ -46,11 +46,13 @@ public class ProveedorDAO {
         return lista;
     }
 
-    public void actualizar(int codigo, String nuevaDireccion) {
-        String sql = "UPDATE proveedor SET direccion=? WHERE codigo=?";
+    public void actualizar(int codigo, String direccion, String ciudad, String provincia) {
+        String sql = "UPDATE proveedor SET direccion=?, ciudad=?, provincia=? WHERE codigo=?";
         try (Connection conn = Conexion.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, nuevaDireccion);
-            ps.setInt(2, codigo);
+            ps.setString(1, direccion);
+            ps.setString(2, ciudad);
+            ps.setString(3, provincia);
+            ps.setInt(4, codigo);
             ps.executeUpdate();
         } catch (SQLException e) {
             System.err.println(e.getMessage());

@@ -45,11 +45,13 @@ public class PiezaDAO {
     return lista;
 }
 
-    public void actualizarPrecio(int codigo, double precio) {
-        String sql = "UPDATE pieza SET precio=? WHERE codigo=?";
+    public void actualizar(int codigo, double precio, String color, int codCategoria) {
+        String sql = "UPDATE pieza SET precio=?, color=?, codigo_categoria=? WHERE codigo=?";
         try (Connection conn = Conexion.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setDouble(1, precio);
-            ps.setInt(2, codigo);
+            ps.setString(2, color);
+            ps.setInt(3, codCategoria);
+            ps.setInt(4, codigo);
             ps.executeUpdate();
         } catch (SQLException e) {
             System.err.println(e.getMessage());

@@ -26,7 +26,7 @@ public class CategoriaDAO {
 
     // CREATE
     public void insertar(Categoria p) {
-        String sql = "INSERT INTO categoria (codigo, nombre) VALUES (?, ?)";
+        String sql = "INSERT INTO categoria VALUES (?, ?)";
         try (Connection conn = Conexion.getConnection();
                 PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, p.getId());
